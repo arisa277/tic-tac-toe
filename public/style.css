@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: rgb(207, 209, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(207, 209, 255, 1) 0%,
+    rgba(249, 196, 255, 1) 100%
+  );
+}
+
+.container {
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+}
+
+h1 {
+  color: rgba(255, 255, 255);
+  font-size: 3em;
+}
+
+.turn {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+  font-size: 2em;
+  margin: 15px;
+}
+
+.board-area {
+  display: grid;
+  place-items: center;
+}
+
+.board {
+  padding: 15px;
+  justify-content: center;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: repeat(3, 120px);
+  grid-template-rows: repeat(3, 120px);
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  box-shadow: 0 30px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  pointer-events: all;
+}
+.board.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.box {
+  cursor: pointer;
+  font-size: 4em;
+  font-weight: bold;
+  align-items: center;
+  display: grid;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.3) 100%
+  );
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+.box:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.playerX {
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+  background: linear-gradient(
+    135deg,
+    rgba(36, 120, 255, 1) 0%,
+    rgba(128, 96, 239, 1) 100%
+  );
+}
+.playerO {
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+  background: linear-gradient(
+    135deg,
+    rgba(165, 86, 233, 1) 0%,
+    rgba(255, 63, 217, 1) 100%
+  );
+}
+
+.modal {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.is-over {
+  display: grid;
+  place-items: center;
+}
+
+.result {
+  display: none;
+  place-items: center;
+  background-color: white;
+  padding: 30px;
+  border-radius: 30px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 213, 247, 0.2) 0%,
+    rgba(194, 218, 255, 0.2) 100%
+  );
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+#winner {
+  color: white;
+  font-size: 2em;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.result button {
+  font-size: 2em;
+  padding: 15px 30px;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(36, 120, 255, 1) 0%,
+    rgba(255, 63, 217, 1) 100%
+  );
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.4s, transform 0.4s;
+  opacity: 0.8;
+}
+.result button:hover {
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(1.01);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
