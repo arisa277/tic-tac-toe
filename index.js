@@ -1,10 +1,11 @@
 var express = require('express');
+const http = require('http');
 var socket = require('socket.io');
 
 var app = express();
-var server = app.listen(8000, function () {
-  console.log('request is running')
-});
+var server = http.createServer(app)
+
+const port = process.env.PORT || 3000
 
 app.use(express.static('public'));
 
@@ -26,3 +27,7 @@ io.on('connection', function (socket) {
     io.emit('resetGame', currentClass);
   })
 });
+
+server.listen(port, () => {
+  console.log(`Server is up on port ${port}!`)
+})
