@@ -153,3 +153,16 @@ h1 {
   transform: scale(1.01);
   transition: box-shadow 0.2s, transform 0.2s;
 }
+
+@media (max-width: 520px) {
+  .board {
+    grid-template-columns: repeat(3, 95px);
+    grid-template-rows: repeat(3, 95px);
+  }
+}
+@media (max-width: 360px) {
+  .board {
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+  }
+}
