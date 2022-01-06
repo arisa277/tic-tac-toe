@@ -1,41 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Toc Toe Game</title>
-  <link rel="stylesheet" href="./style.css">
-</head>
-
-<body>
-  <div class="container">
-    <h1>Tic Tac Toe Game</h1>
-    <div class="modal">
-      <div class="result">
-        <div id="winner"></div>
-        <button class="reset-button" onclick="resetGame()">Play again</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Toc Toe Game</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Join the game</h1>
+      <div class="">
+        <form action="/game.html">
+          <label>Display name</label>
+          <input
+            type="text"
+            name="username"
+            placeholder="Display name"
+            autocomplete="off"
+            required
+          />
+          <label>Room</label>
+          <input
+            type="text"
+            name="room"
+            placeholder="Room"
+            autocomplete="off"
+            required
+          />
+          <button>Join</button>
+        </form>
       </div>
     </div>
-    <p class="turn"><span class="player"></span>'s turn</p>
-    <div class="board-area">
-      <div class="board">
-        <div class="box" id="0"></div>
-        <div class="box" id="1"></div>
-        <div class="box" id="2"></div>
-        <div class="box" id="3"></div>
-        <div class="box" id="4"></div>
-        <div class="box" id="5"></div>
-        <div class="box" id="6"></div>
-        <div class="box" id="7"></div>
-        <div class="box" id="8"></div>
-      </div>
-    </div>
-  </div>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="./game.js"></script>
-</body>
-
+  </body>
 </html>
