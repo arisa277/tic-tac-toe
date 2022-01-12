@@ -9,11 +9,19 @@ const port = process.env.PORT || 3000
 
 app.use(express.static('public'));
 
+app.get('/game.html', (req, res) => {
+  console.log(req.params)
+})
+
 // socket setup
 var io = socket(server);
 
 io.on('connection', function (socket) {
   console.log("made socket connection", socket.id);
+
+  socket.on('join', (inputPlayer, roomName) => {
+    console.log(inputPlayer, roomName)
+  })
 
   socket.on('box', function (id, currentPlayer) {
     io.emit('box', id, currentPlayer);
