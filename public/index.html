@@ -10,23 +10,27 @@
   <body>
     <div class="container">
       <h1>Join the game</h1>
-      <div class="">
-        <form>
-          <label for="x">X</label>
-          <input type="radio" name="player" id="x" value="x" required/>
-          <label for="o">O</label>
-          <input type="radio" name="player" id="o" value="o" />
-          <label>Room</label>
-          <input
-            type="text"
-            name="room"
-            placeholder="Room"
-            autocomplete="off"
-            id="room-name"
-            required
-          />
+      <div class="form-area">
+        <form action="/game.html">
+          <span class="player-area">
+            <label for="">Player:</label>
+            <label for="x">X</label>
+            <input type="radio" name="player" id="x" value="x" />
+            <label for="o">O</label>
+            <input type="radio" name="player" id="o" value="o" />
+          </span>
+          <span class="room-area">
+            <label>Room:</label>
+            <input
+              type="text"
+              name="room"
+              placeholder="Room"
+              autocomplete="off"
+              id="room-name"
+              required
+            />
+          </span>
           <button class="join-button">Join</button>
-          <script src="/socket.io/socket.io.js"></script>
           <script src="./room.js"></script>
         </form>
       </div>

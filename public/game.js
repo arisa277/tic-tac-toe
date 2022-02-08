@@ -1,4 +1,4 @@
-var socket = io.connect();
+var socket = io();
 
 const playerX = 'X';
 const playerO = 'O';
@@ -8,7 +8,9 @@ let squares = Array(9).fill(null);
 const boxes = document.querySelectorAll('.box');
 const board = document.querySelector('.board');
 const playerName = document.querySelector('.player');
-const modal = document.querySelector('.modal');
+const resultModal = document.querySelector('.result-modal');
+const waitingModal = document.querySelector('.waiting-modal');
+const waitingMessage = document.querySelector('.waiting-message')
 
 playerName.innerHTML = playerX;
 
@@ -42,9 +44,28 @@ socket.on('resetGame', function () {
   location.reload();
 })
 
+socket.on('removeModal', function (roomSize) {
+  waitingModal.classList.remove('waiting-modal')
+  waitingMessage.innerHTML = ""
+  console.log('remove')
+})
+
+socket.on('leave', () => {
+  location.href = ('/')
+})
+
+const { player, room } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+console.log(player, room)
+
+socket.emit('join', { player, room }, (error) => {
+  if (error) {
+    alert(error)
+    location.href = ('/')
+  }
+})
 
 function checkModal() {
-  modal.classList.contains('is-over') ? modal.classList.remove('is-over') : modal.classList.add('is-over');
+  resultModal.classList.contains('is-over') ? resultModal.classList.remove('is-over') : resultModal.classList.add('is-over');
   board.classList.contains('disabled') ? board.classList.remove('disabled') : board.classList.add('disabled');
 }
 
@@ -58,7 +79,7 @@ function clickBox(e) {
   let currentClass = xTurn ? playerX : playerO;
 
   if (squares.every(square => square === null)) {
-    modal.classList.add('is-over');
+    resultModal.classList.add('is-over');
     board.classList.add('disabled');
   } else {
     socket.emit('waiting', currentClass)
@@ -100,12 +121,12 @@ function checkWinner() {
   if (winner) {
     result.style.display = 'grid';
     resultWinner.innerHTML = `${winner} wins!`;
-    modal.classList.add('is-over');
+    resultModal.classList.add('is-over');
     board.classList.add('disabled');
   } else if (draw.length === 9) {
     result.style.display = 'grid';
     resultWinner.innerHTML = `It's a draw!`;
-    modal.classList.add('is-over');
+    resultModal.classList.add('is-over');
     board.classList.add('disabled');
   }
 }
